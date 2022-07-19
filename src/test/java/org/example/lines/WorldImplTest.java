@@ -1,5 +1,6 @@
 package org.example.lines;
 
+import org.example.Line;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,7 +13,7 @@ class WorldImplTest {
         String worldString;
         try (ClassPathXmlApplicationContext context =  new ClassPathXmlApplicationContext(
                 "ApplicationContext.xml")) {
-            WorldImpl world = context.getBean("worldImpl",WorldImpl.class);
+            Line world = context.getBean("worldImpl", Line.class);
             worldString = world.getString();
         }
         assertEquals("World", worldString);

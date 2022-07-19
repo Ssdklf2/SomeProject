@@ -1,5 +1,6 @@
 package org.example.lines;
 
+import org.example.Line;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,7 +14,7 @@ class HelloImplTest {
         String helloString;
         try (ClassPathXmlApplicationContext context =  new ClassPathXmlApplicationContext(
                 "ApplicationContext.xml")) {
-            HelloImpl hello = context.getBean("helloImpl", HelloImpl.class);
+            Line hello = context.getBean("helloImpl", Line.class);
             helloString = hello.getString();
         }
         assertEquals("Hello", helloString);

@@ -8,11 +8,11 @@ public class Main {
     public static void main(String[] args) {
         try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "ApplicationContext.xml")) {
-            HelloImpl hello = context.getBean("helloImpl", HelloImpl.class);
+            Line hello = context.getBean("helloImpl", Line.class);
             String helloString = hello.getString();
             System.out.println(helloString);
 
-            WorldImpl world = context.getBean("worldImpl", WorldImpl.class);
+            Line world = context.getBean("worldImpl", Line.class);
             String worldString = world.getString();
             System.out.println(worldString);
 
