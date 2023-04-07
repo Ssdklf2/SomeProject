@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<div th:fragment="header(user)">
+    <h1><a href="/message">Board</a></h1>
+    <hr>
+    <div th:if="${user.email != null}">
+        <div>
+            <h2> Hello, <span th:text="${user.name}"></span></h2>
+            <h3><a th:href="@{/account}">Аккаунт</a></h3>
+        </div>
+        <form th:action="@{/user/logout}" method="post">
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
+            <input type="submit" value="Выйти из аккаунта">
+        </form>
+        <div th:if="${user.isAdmin()}"><a href="/admin">Панель администратора</a></div>
+    </div>
+    <div th:if="${user.email == null}">
+        <a href="user/login">Войти</a> <br>
+        <a href="user/registration">Зарегистрироваться</a>
+    </div>
+    <hr>
+</div>
+</body>
+</html>

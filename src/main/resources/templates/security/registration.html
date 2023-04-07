@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<h1><a href="/message">Board</a></h1>
+<h2><a href="/user/login">Войти</a></h2>
+<h4>Регистрация</h4>
+<form action="/user/registration" th:action="@{/user/registration}" th:object="${user}" method="post">
+    <div>
+        <label for="name"> Имя:</label>
+        <input type="text" th:field="*{name}" name="name" id="name">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+    <div>
+        <label for="email"> Email:</label>
+        <input type="email" th:field="*{email}" name="name" id="email">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+    <div>
+        <label for="phoneNumber">Номер телефона:</label>
+        <input type="text" th:field="*{phoneNumber}" name="text" id="phoneNumber">
+        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+    </div>
+    <div>
+        <label for="password">Пароль:</label>
+        <input type="password" th:field="*{password}" name="text" id="password">
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </div>
+    <div>
+        <label for="passwordRepeat">Подтвердить пароль:</label>
+        <input type="password" th:field="*{passwordRepeat}" name="text" id="passwordRepeat">
+        <span th:if="${#fields.hasErrors('passwordRepeat')}" th:errors="*{passwordRepeat}"></span>
+    </div>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Зарегистрироваться">
+</form>
+</body>
+</html>

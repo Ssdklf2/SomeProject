@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<div th:include="fragments/headerFragment :: header(${user})"></div>
+<h2>Объявления</h2>
+<form th:action="@{/message}" method="get">
+    <label>
+        Поиск по названию:
+        <input type="text" name="title">
+    </label><br>
+    <input type="submit" value="Поиск">
+</form>
+<br>
+<hr>
+<br>
+<a href="/message/sort"> Отсортировать </a>
+<br>
+<br>
+<div th:include="fragments/messagesList :: messagesList(${messages})"></div>
+<div th:if="${user.email != null}">
+    <hr>
+    <h3>Создать новое объявление</h3>
+    <form th:action="@{/message/create}" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Тип объявления</legend>
+            <input type="radio" id="BUY" name="messageType" value="BUY" checked>
+            <label for="BUY">Покупка</label><br>
+            <input type="radio" id="SELL" name="messageType" value="SELL">
+            <label for="SELL">Продажа</label><br>
+            <input type="radio" id="WORK" name="messageType" value="WORK"/>
+            <label for="WORK">Работа</label><br>
+            <input type="radio" id="SERVICE" name="messageType" value="SERVICE"/>
+            <label for="SERVICE">Услуги</label> <br>
+            <input type="radio" id="OTHER" name="messageType" value="OTHER"/>
+            <label for="OTHER">Другое</label> <br>
+        </fieldset>
+        <br>
+        <label for="title">Название: </label>
+        <input type="text" name="title" id="title"><br><br>
+        <label for="description">Описание: </label>
+        <textarea name="description" id="description"> </textarea><br><br>
+        <label for="price">Цена: </label>
+        <input type="number" name="price" id="price"><br><br>
+        <label for="city">Город: </label>
+        <input type="text" name="city" id="city"> <br><br>
+        <p> Загрузить фотографии: </p>
+        Превью: <input type="file" name="file1"><br><br>
+        Доп. фото: <input type="file" name="file2"><br><br>
+        Доп. фото: <input type="file" name="file3"><br><br>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Добавить товар">
+    </form>
+</div>
+<div th:if="${user.email == null}"> Чтобы создать новое объявление нужно <a th:href="@{/user/login}">
+    авторизоваться </a></div>
+</body>
+</html>

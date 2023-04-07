@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<h1><a href="/message">Board</a></h1>
+<hr>
+<form th:action="@{/message/sort}" method="get">
+    <fieldset>
+        <legend>Тип объявления</legend>
+        <input type="radio" id="ALL" name="type" value="ALL" checked>
+        <label for="ALL">Все</label><br>
+        <input type="radio" id="BUY" name="type" value="BUY">
+        <label for="BUY">Покупка</label><br>
+        <input type="radio" id="SELL" name="type" value="SELL">
+        <label for="SELL">Продажа</label><br>
+        <input type="radio" id="WORK" name="type" value="WORK"/>
+        <label for="WORK">Работа</label><br>
+        <input type="radio" id="SERVICE" name="type" value="SERVICE"/>
+        <label for="SERVICE">Услуги</label> <br>
+        <input type="radio" id="OTHER" name="type" value="OTHER"/>
+        <label for="OTHER">Другое</label> <br>
+    </fieldset>
+    <br>
+    <label>
+        Название:
+        <input type="text" name="title">
+    </label><br><br>
+    <label>
+        Город:
+        <input type="text" name="city">
+    </label><br><br>
+    <label>
+        Цена от
+        <input type="number" name="priceFrom">
+        до
+        <input type="number" name="priceTo">
+    </label><br><br>
+    <input type="submit" value="Сортировать">
+</form>
+<div th:include="fragments/messagesList :: messagesList(${messages})"></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<h1><a href="/message">Board</a></h1>
+<h3>Редактирование роли пользователя <span th:text="${user.name}"></span></h3>
+<form th:action="@{/admin/user/edit}" method="post">
+    <fieldset>
+        <legend> Роли</legend>
+        <div th:each="role :${roles}">
+            <label> <span th:text="${role.name()}"></span>
+                <input type="radio" name="role" th:value="${role.name()}"
+                       th:checked="${user.getRoles().contains(role)}">
+            </label>
+        </div>
+    </fieldset>
+    <input type="hidden" th:value="${user.id}" name="id">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <button type="submit">Подтвердить</button>
+</form>
+</body>
+</html>

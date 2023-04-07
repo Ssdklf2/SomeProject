@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<div th:fragment="messagesList(messages)">
+    <hr>
+    <p> Найдено объявлений: <span th:text="${messages.size()}"></span></p>
+    <div th:each="message :${messages}">
+        <hr>
+        <div th:if="${message.previewImageId != null}">
+            <div><a th:href="@{/message/{id}(id=${message.id})}">
+                <img th:src="@{/image/{id}(id=${message.previewImageId})}" alt="image" width="80px">
+            </a></div>
+        </div>
+        <p><a th:href="@{/message/{id}(id=${message.id})}"> <span th:text="${message.title}"></span></a>
+            | Цена: <span th:text="${message.price}"></span></p>
+        <p> Город: <span th:text="${message.city}"></span></p>
+    </div>
+</div>
+</body>
+</html>

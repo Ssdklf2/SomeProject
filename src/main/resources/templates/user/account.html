@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<div th:include="fragments/headerFragment :: header(${user})"></div>
+<h2> Данные пользователя: </h2>
+<p>Имя пользователя: <span th:text="${user.name}"> </span></p>
+<p>Email: <span th:text="${user.email}"></span></p>
+<p>Номер телефона: <span th:text="${user.phoneNumber}"></span><br>
+<hr>
+<div>
+    <b> Объявления пользователя: </b>
+    <div th:each="message :${messages}">
+        <hr>
+        <b>
+            <a th:href="@{/message/{id}(id=${message.id})}">
+                <span th:text="${message.title}"></span></a></b>
+        <p> Цена: <span th:text="${message.price}"></span></p>
+        <p> Город: <span th:text="${message.city}"></span></p>
+        <form th:action="@{/message/delete/{id}(id=${message.id})}" method="post">
+            <input type="submit" value="Удалить объявление">
+        </form>
+    </div>
+    <p><span th:if="${messages.isEmpty()}">Не найдено</span></p>
+</div>
+<hr>
+<form th:action="@{/account/change}" method="post">
+    Изменить имя:<input type="text" name="name"> <br><br>
+    <input type="submit" value="Изменить имя">
+</form>
+<hr>
+<form th:action="@{/account/change}" method="post">
+    Изменить номер телефона: <input type="text" name="phoneNumber"><br><br>
+    <input type="submit" value="Изменить номер телефона">
+</form>
+<p>Аккаунт зарегистрирован: <span th:text="${time}"> </span></p>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<div th:include="fragments/headerFragment :: header(${user})"></div>
+<h3>Подробная информация о пользователе:</h3>
+<b>Имя: <span th:text=" ${user.name}"></span></b><br>
+<b>Номер телефона:<span th:text=" ${user.phoneNumber}"></span></b>
+<h4>Объявления: </h4>
+<div th:if="messages != null">
+    <div th:include="fragments/messagesList :: messagesList(${messages})"></div>
+</div>
+<div th:if="${messages.isEmpty()}">Объявлений пользователя не найдено</div>
+</body>
+</html>

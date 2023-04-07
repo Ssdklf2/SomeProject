@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<h1><a href="/message">Board</a></h1>
+<h4>Авторизация</h4>
+<p th:if="${loginError}" class="error"> Wrong email or password</p>
+<form th:action="@{/user/login}" method="post">
+    <label for="username">Email</label>: <input type="email" name="username" id="username">
+    <br><br>
+    <label for="password">Пароль</label>: <input type="password" name="password" id="password" autofocus="autofocus">
+    <br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Вход">
+</form>
+<a href="/user/registration">Зарегистрироваться</a>
+</body>
+</html>

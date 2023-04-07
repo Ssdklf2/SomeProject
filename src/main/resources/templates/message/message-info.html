@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<h1><a href="/message">Board</a></h1>
+<hr>
+<h2><b>Название: </b><span th:text=" ${message.title}"></span><br>
+</h2>
+<hr>
+<div th:if="${!images.isEmpty()}">
+    <b>Фото:</b>
+    <p th:each="image : ${images}">
+        <a th:href="@{/image/{id}(id=${image.id})}">
+            <img th:src="@{/image/{id}(id=${image.id})}" alt="image" width="80px">
+        </a>
+    </p>
+</div>
+<b>Описание: </b><span th:text=" ${message.description}"></span><br>
+<b>Тип: </b><span th:text=" ${message.messageType}"></span><br>
+<b>Цена: </b><span th:text=" ${message.price}"></span><br>
+<b>Город: </b><span th:text=" ${message.city}"></span><br>
+<b>Автор: </b><a th:href="@{/user/{id}(id=${message.user.id})}"> <span th:text="${message.user.name}"></span> </a><br>
+<hr>
+</body>
+</html>
